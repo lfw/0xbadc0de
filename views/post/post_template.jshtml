@@ -1,0 +1,25 @@
+<h2>Test JS code snip</h2>
+<p>The following demonstrates using Syntax Highlight 1 inside a webpage using Node JS.</p>
+<pre class="brush: js;">
+
+// Mid-ware Parsers
+app.configure(function() {
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'jshtml');
+    app.use(express.bodyParser());
+    app.use(express.cookieParser());
+    app.use(express.methodOverride());
+    app.use(app.router);
+    app.use(express.static(__dirname + '/public'));
+    
+    // Config for custom classes
+    auth.set('loginUrl', '/login');
+    auth.set('logoutUrl', '/logout');
+});
+
+</pre>
+
+<script type="text/javascript" src="/scripts/shCore.js"></script>
+<script type="text/javascript" src="/scripts/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="/styles/shCoreRDark.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>

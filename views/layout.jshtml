@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/pub/styles/site.css" />
+    <link type="text/css" rel="stylesheet" href="/pub/styles/shCoreRDark.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/pub/scripts/shCore.js"></script>
+    <script type="text/javascript" src="/pub/scripts/site.js"></script>
+    <title>0xbadc0de - @locals.title</title>
+  </head>
+  <body>
+    <div class="toplevel logo"><img src="/pub/img/logo.png" /></div>
+    <div class="toplevel shadow top_round bottom_round">
+      <div class="menu top_round">&nbsp;
+	<a href="/Home">Home</a>
+	<a href="/Post">Posts</a>
+	<a href="/Contact">Contact Me</a>
+<!--	<span class="siteSearch">
+	  <input type="text" value="Search the site" />
+	  <img src="/img/search.png" />
+	</span> -->
+      </div>
+      <div class="body">
+	<h2>@locals.title</h2>
+	<p class='notice'>@locals.message</p>
+	@writeBody();
+      </div>
+      <div class="footer bottom_round">
+	<p>
+	  <a href="/Home">Home</a> | <a href="/Post">Posts</a> | <a href="/Contact">Contact Me</a></p>
+	<hr />
+	<p>
+	  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" mce_style="border-width: 0;" src="/pub/img/cc.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" mce_href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License</a>.
+	</p>
+      </div>
+    </div>
+  </body>
+</html>

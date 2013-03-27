@@ -1,0 +1,25 @@
+<p>If you have any questions or feedback, I would love to hear from you!</p>
+<p>Send me an <a href='en0@mail.com'>email</a> or leave me a voice message.</p>
+<!--
+<form id="callMe">
+  <input type="hidden" name="buttonId" value="17679ff2fdac16ecec92b20b312af0316941f924" />
+  <input type="hidden" name="showCallerNumber" value="0" />
+  <h3>Your phone number is kept private.</h3>
+  <table>
+    <tr><td>Your Name:</td><td><input type="text" name="name" /></td></tr>
+    <tr><td>Your Number:</td><td><input type="text" name="callerNumber" /></td></tr>
+    <tr><td colspan="2" style='text-align:right;'>
+	<span style="font-size: smaller; float:left;">Powered by Google Voice.</span>
+	<input type="button" value="Call Me" data-post="https://clients4.google.com/voice/embed/webButtonConnect" data-form="callMe" /></td></tr>
+  </table>
+</form>
+-->
+
+<p>
+  <object type="application/x-shockwave-flash" data="https://clients4.google.com/voice/embed/webCallButton" width="230" height="100">
+    <param name="movie" value="https://clients4.google.com/voice/embed/webCallButton" />
+    <param name="wmode" value="transparent" />
+    <param name="FlashVars" value="id=17679ff2fdac16ecec92b20b312af0316941f924&style=0" />
+  </object>
+</p>
+

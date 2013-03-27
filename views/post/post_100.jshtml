@@ -1,0 +1,110 @@
+<script type="text/javascript" src="/pub/scripts/shBrushJScript.js"></script>
+
+<p>It's true, Nodejs has packages to use MVC patterns with a simple npm install command. But none of them separated the code out like I wanted. I started playing around with my own implementation and this is what I learned.</p>
+<hr />
+<h3>The app configuration</h3>
+<p>First, we need to set up node with the basics.</p>
+<ul>
+  <li>We are using express with some view engine.</li>
+  <li>Statics are prefixed with '/pub'</li>
+  <li>ctrl is a list of controllers. We will look at it in more detail shortly.</li>
+</ul>
+<pre class="brush: js">
+var express = require('express');
+var app = express.createServer();
+var ctrl = require('./controller');
+
+// Enable and configure Mid-ware.
+app.configure(function() {
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'whatever');
+    app.use(express.bodyParser());
+    app.use('/pub', express.static(__dirname + '/public'));
+});
+ 
+</pre>
+<hr />
+<h3>Default Route</h3>
+<p>Next, lets setup the default route. This is the most general approach.</p>
+<ul>
+  <li>statics '/pub/*' is kept from entering the ctrl route.</li>
+  <li>A default action is applied that should exist on all controllers.</li>
+  <li>This handles any controller action and method.</li>
+  <li>If the action or method is not implemented, you get a 404.</li>
+</ul>
+<pre class="brush: js">
+app.all('/:control?/:action?/:id?',
+  // Skip /pub/* - These are for statics
+  function (req,res,next) { if(req.params.control == 'pub') next('route'); else next(); },
+  
+  // Set default controller to {home}
+  function (req,res,next) { if(!req.params.control) req.params.control = 'home'; next(); },
+  
+  // Set default action to {index}
+  function (req,res,next) { if(!req.params.action) req.params.action = 'index'; next(); },
+  
+  // Attempt to invoke method for the requested controler/action.
+  function (req,res) {
+    var c = req.params.control.toLowerCase();
+    var a = req.params.action.toLowerCase();
+    var m = req.method;
+    try { ctrl[c][a][m](req,res); }
+    catch (e) { res.send(404) }
+  });
+  
+</pre>
+<hr />
+<h3>The Controller Collection</h3>
+<p>Now, lets look at the controller collection.</p>
+<ul>
+  <li>This is a module index.js. It is responsable for pulling in other modules.</li>
+  <li>Notice the name shift, dropping 'Controller' from the name.</li>
+</ul>
+<pre class="brush: js">
+/** Expose all controllers to the app so routing can take place. **/
+
+var homeController = require('./homeController');
+var postController = require('./postController');
+
+module.exports = { 
+  home: homeController, 
+  post: postController,
+};
+ 
+</pre>
+<hr />
+<h3>The Controller</h3>
+<p>Lastly, lets look at the controller itself.</p>
+<ul>
+  <li>Each action defines a function for the methods it implements.</li>
+  <li>Methods (or actions) could refrence the same function.</li>
+  <li>Security is not implemented in this example.</li>
+</ul>
+
+<pre class="brush: js">
+module.exports = {
+  index: { GET: _index },
+  view: { GET: _view },
+  create: { GET: _create, POST: _createDo }
+};
+
+// GET /post 
+// GET /post/index
+function _index(req, res) { /** render page here **/ }
+
+// GET /post/view
+function _view(req, res) { /** render page here **/ }
+
+// GET /post/create
+function _create(req, res) { /** render page here **/ }
+
+// POST /post/create
+function _createDo(req, res) { /** process data here **/ }
+ 
+</pre>
+<hr />
+<h3>Thoughts</h3>
+<p>With this or similar aproaches, you can focus less on the symantics of protocal and more on your website. The point is to make it simple. The complexity is bound to grow as more requirements come in. It is best to start with a framework that is simple or atleast simple to interface with.</p>
+<p>One thought on security: It is apparent that you could accidentaly route to a action you intended for authorized access only.</p>
+
+

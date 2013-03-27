@@ -1,0 +1,13 @@
+<p>Posts are orginized by category. Some concepts bleed through multiple categories in which case they will be placed under the largest match. As the content on this site expands, i will create a more user friendly interface to locate posts.<p>
+<hr />
+<h3>NodeJS</h3>
+<ul>
+  <li><a href='/post/view/100'>Using MVC approach in NodeJS Express</a></li>
+  <li><a href='/post/view/200'>Simple pre-route optional authorization</a></li>
+  <li><a href='/post/view/300'>Getting started with Mongo in NodeJS</a></li>
+</ul>
+
+<h3>Microsoft MVC.net</h3>
+<ul>
+  <li><a>Custom Role assigments in MVC.NET without custom claim providers</a></li>
+</ul>
